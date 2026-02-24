@@ -13,7 +13,8 @@ public class PlayerFallState : BaseState<PlayerState, PlayerController>
 
     public override void UpdateState()
     {
-        // Fall State logic
+        // Move while falling
+        Context.Mover.Move(Context.MoveInput);
     }
 
     public override void ExitState()
@@ -24,6 +25,17 @@ public class PlayerFallState : BaseState<PlayerState, PlayerController>
     public override PlayerState GetNextState()
     {
         // some logic
+        if(Context.IsGrounded)
+        {
+            if (Context.MoveInput != Vector2.zero)
+            {
+                return PlayerState.Walk;
+            }
+            else
+            {
+                return PlayerState.Idle;
+            }
+        }
         return StateKey;
     }
 }

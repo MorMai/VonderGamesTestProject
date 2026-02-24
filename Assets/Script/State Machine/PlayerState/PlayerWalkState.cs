@@ -24,10 +24,21 @@ public class PlayerWalkState : BaseState<PlayerState, PlayerController>
 
     public override PlayerState GetNextState()
     {
+        if (Context.JumpPressed && Context.IsGrounded) //change state when player jump input is true
+        {
+            return PlayerState.Jump;
+        }
+
+        if (!Context.IsGrounded)
+        {
+            return PlayerState.Fall;
+        }
+
         if (Context.MoveInput == Vector2.zero)
         {
             return PlayerState.Idle;
         }
+
         return StateKey;
     }
 }

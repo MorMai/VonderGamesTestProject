@@ -16,6 +16,6 @@ MonoBehaviour:
   health: 100
   minDamage: 3
   maxDamage: 5
-  jumpHeight: 10
+  jumpHeight: 25
   moveSpeed: 5
   attackSpeed: 1
