@@ -2,14 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerRunState : BaseState<PlayerState>
+public class PlayerRunState : BaseState<PlayerState, PlayerController>
 {
-    private PlayerStateManager _stateManager;
-    public PlayerRunState(PlayerStateManager stateManager) : base(PlayerState.Run)
-    {
-        _stateManager = stateManager;
-    }
-
+    public PlayerRunState(PlayerController context) : base(PlayerState.Run, context) { }
     public override void EnterState()
     {
         Debug.Log("Enter Run State");

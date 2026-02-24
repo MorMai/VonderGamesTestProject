@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerWalkState : BaseState<PlayerState>
+public class PlayerWalkState : BaseState<PlayerState, PlayerController>
 {
-    private PlayerStateManager _stateManager;
-    public PlayerWalkState(PlayerStateManager stateManager) : base(PlayerState.Walk) 
-    {
-        _stateManager = stateManager;
-    }
+    public PlayerWalkState(PlayerController context) : base(PlayerState.Walk, context) { }
 
     public override void EnterState()
     {
@@ -27,7 +23,10 @@ public class PlayerWalkState : BaseState<PlayerState>
 
     public override PlayerState GetNextState()
     {
-        // some logic
+        if (Context.IsMoving == false)
+        {
+            return PlayerState.Idle;
+        }
         return StateKey;
     }
 }

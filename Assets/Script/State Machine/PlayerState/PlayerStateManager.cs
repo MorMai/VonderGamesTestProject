@@ -11,15 +11,15 @@ public enum PlayerState
     Fall
 }
 
-public class PlayerStateManager : StateManager<PlayerState>
+public class PlayerStateManager : StateManager<PlayerState, PlayerController>
 {
-    private void Awake()
+    public PlayerStateManager(PlayerController controller)
     {
-        States.Add(PlayerState.Idle, new PlayerIdleState(this));
-        States.Add(PlayerState.Walk, new PlayerWalkState(this));
-        States.Add(PlayerState.Run, new PlayerRunState(this));
-        States.Add(PlayerState.Jump, new PlayerJumpState(this));
-        States.Add(PlayerState.Fall, new PlayerFallState(this));
+        States.Add(PlayerState.Idle, new PlayerIdleState(controller));
+        States.Add(PlayerState.Walk, new PlayerWalkState(controller));
+        States.Add(PlayerState.Run, new PlayerRunState(controller));
+        States.Add(PlayerState.Jump, new PlayerJumpState(controller));
+        States.Add(PlayerState.Fall, new PlayerFallState(controller));
         CurrentState = States[PlayerState.Idle];
     }
 }

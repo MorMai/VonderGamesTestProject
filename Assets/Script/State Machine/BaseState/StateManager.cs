@@ -2,26 +2,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class StateManager<EState> : MonoBehaviour where EState : Enum
+public class StateManager<EState, TContext> where EState : Enum
 {
-    protected Dictionary<EState, BaseState<EState>> States = new Dictionary<EState, BaseState<EState>>(); // A dictionary to hold the states of the state machine
-    protected BaseState<EState> CurrentState; // The current state of the state machine
+    protected Dictionary<EState, BaseState<EState,TContext>> States = new Dictionary<EState, BaseState<EState, TContext>>(); // A dictionary to hold the states of the state machine
+    protected BaseState<EState, TContext> CurrentState; // The current state of the state machine
     protected bool IsTransitioningState = false;
 
-    void Start()
+    // use this instead of start
+    public void Initialize(EState startingState)
     {
+        CurrentState = States[startingState]; 
         CurrentState.EnterState(); 
     }
 
-    void Update()
+    //use this instead of update
+    public void Tick()
     {
+        if (IsTransitioningState) return; // If we are currently transitioning states, we don't want to update the current state
+
         EState nextStateKey = CurrentState.GetNextState(); // Get the next state from the current state
 
-        if (IsTransitioningState && nextStateKey.Equals(CurrentState.StateKey))
+        if (nextStateKey.Equals(CurrentState.StateKey))
         {
             CurrentState.UpdateState();
         }
-        else if(!IsTransitioningState)
+        else 
         {
             TransitionToState(nextStateKey);
         }

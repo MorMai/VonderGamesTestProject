@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerFallState : BaseState<PlayerState>
+public class PlayerFallState : BaseState<PlayerState, PlayerController>
 {
-    private PlayerStateManager _stateManager;
-    public PlayerFallState(PlayerStateManager stateManager) : base(PlayerState.Fall)
-    {
-        _stateManager = stateManager;
-    }
+    public PlayerFallState(PlayerController context) : base(PlayerState.Fall, context) { }
 
     public override void EnterState()
     {

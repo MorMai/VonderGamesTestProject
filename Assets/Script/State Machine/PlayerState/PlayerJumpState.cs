@@ -2,13 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerJumpState : BaseState<PlayerState>
+public class PlayerJumpState : BaseState<PlayerState, PlayerController>
 {
-    private PlayerStateManager _stateManager;
-    public PlayerJumpState(PlayerStateManager stateManager) : base(PlayerState.Jump)
-    {
-        _stateManager = stateManager;
-    }
+    public PlayerJumpState(PlayerController context) : base(PlayerState.Jump, context) { }
 
     public override void EnterState()
     {
