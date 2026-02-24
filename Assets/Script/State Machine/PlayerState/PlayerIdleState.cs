@@ -20,6 +20,16 @@ public class PlayerIdleState : BaseState<PlayerState, PlayerController>
     }
     public override PlayerState GetNextState()
     {
+        if (Context.JumpPressed && Context.IsGrounded)
+        {
+            return PlayerState.Jump;
+        }
+
+        if (!Context.IsGrounded)
+        {
+            return PlayerState.Fall;
+        }
+
         if (Context.MoveInput != Vector2.zero)
         {
             return PlayerState.Walk;
