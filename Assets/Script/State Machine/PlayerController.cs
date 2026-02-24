@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private PlayerStateManager stateMachine;
 
     public bool IsRunning { get; set; }
+    public float CurrentSpeedMultiplier => IsRunning ? 2.0f : 1.0f;
     public bool JumpPressed { get; private set; }
     public Vector2 MoveInput { get; set; }
     public bool IsGrounded => GroundChecker.CheckIsGround();
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         MoveInput = new Vector2(Input.GetAxisRaw("Horizontal"), 0f); // Get horizontal input
         JumpPressed = Input.GetButtonDown("Jump"); // Check if jump button is pressed
-        IsRunning = Input.GetKey(KeyCode.LeftShift); // Check if run button is held
+        IsRunning = Input.GetKey(KeyCode.LeftShift); 
         stateMachine.Tick(); // Update the current state
     }
 }

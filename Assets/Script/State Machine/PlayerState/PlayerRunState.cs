@@ -13,7 +13,7 @@ public class PlayerRunState : BaseState<PlayerState, PlayerController>
     public override void UpdateState()
     {
         // Run State logic
-        Context.Mover.Move(Context.MoveInput * 2);
+        Context.Mover.Move(Context.MoveInput * Context.CurrentSpeedMultiplier);
     }
 
     public override void ExitState()
