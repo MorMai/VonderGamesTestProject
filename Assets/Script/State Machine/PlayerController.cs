@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public GroundChecker GroundChecker;
     private PlayerStateManager stateMachine;
 
+    public bool IsRunning { get; set; }
     public bool JumpPressed { get; private set; }
     public Vector2 MoveInput { get; set; }
     public bool IsGrounded => GroundChecker.CheckIsGround();
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         MoveInput = new Vector2(Input.GetAxisRaw("Horizontal"), 0f); // Get horizontal input
         JumpPressed = Input.GetButtonDown("Jump"); // Check if jump button is pressed
+        IsRunning = Input.GetKey(KeyCode.LeftShift); // Check if run button is held
         stateMachine.Tick(); // Update the current state
     }
 }

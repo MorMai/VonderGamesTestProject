@@ -9,7 +9,7 @@ public class EntityData : ScriptableObject
     public int health;
     public int minDamage;
     public int maxDamage;
-    public int jumpHeight;
-    public int moveSpeed;
-    public int attackSpeed;
+    public float jumpHeight;
+    public float moveSpeed;
+    public float attackSpeed;
 }

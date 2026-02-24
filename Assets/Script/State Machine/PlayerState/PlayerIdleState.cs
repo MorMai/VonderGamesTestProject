@@ -30,6 +30,11 @@ public class PlayerIdleState : BaseState<PlayerState, PlayerController>
             return PlayerState.Fall;
         }
 
+        if (Context.IsRunning && Context.MoveInput != Vector2.zero)
+        {
+            return PlayerState.Run;
+        }
+
         if (Context.MoveInput != Vector2.zero)
         {
             return PlayerState.Walk;
