@@ -11,11 +11,11 @@ public class Mover : MonoBehaviour, IRequireStats
     }
     public void Move(Vector2 direction)
     {
-        rb.velocity = new Vector2(direction.x * speed, rb.velocity.y); //apply new x, keep current y
+        rb.velocity = direction * speed;
     }
 
     public void Stop()
     {
-        rb.velocity = new Vector2(0f, rb.velocity.y);
+        rb.velocity = Vector2.zero;
     }
 }

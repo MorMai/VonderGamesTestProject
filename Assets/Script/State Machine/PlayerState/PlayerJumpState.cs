@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerJumpState : BaseState<PlayerState, PlayerController>
 {
     private Rigidbody2D rb;
-    private float timeInState;
-    private float minTimeInJump = 0.1f;
     public PlayerJumpState(PlayerController context) : base(PlayerState.Jump, context) 
     {
         rb = context.GetComponent<Rigidbody2D>();
@@ -16,14 +14,12 @@ public class PlayerJumpState : BaseState<PlayerState, PlayerController>
     {
         Debug.Log("Enter Jump State");
         // Jump State logic
-        timeInState = 0f;
         Context.Jumper.Jump();
     }
 
     public override void UpdateState()
     {
         // Allow air control
-        timeInState += Time.deltaTime;
         Context.Mover.Move(Context.MoveInput);
     }
 
@@ -34,12 +30,6 @@ public class PlayerJumpState : BaseState<PlayerState, PlayerController>
 
     public override PlayerState GetNextState()
     {
-        // prevent any transition
-        if (timeInState < minTimeInJump)
-        {
-            return PlayerState.Jump;
-        }
-
         // If our vertical velocity is near zero or negative, we've reached the peak
         if (rb.velocity.y <= 0f)
         {
