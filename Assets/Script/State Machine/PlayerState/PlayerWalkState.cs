@@ -14,6 +14,7 @@ public class PlayerWalkState : BaseState<PlayerState, PlayerController>
     public override void UpdateState()
     {
         // Walk State logic
+        Context.Mover.Move(Context.MoveInput);
     }
 
     public override void ExitState()
@@ -23,7 +24,7 @@ public class PlayerWalkState : BaseState<PlayerState, PlayerController>
 
     public override PlayerState GetNextState()
     {
-        if (Context.IsMoving == false)
+        if (Context.MoveInput == Vector2.zero)
         {
             return PlayerState.Idle;
         }

@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Mover mover;
+    public Mover Mover;
     private PlayerStateManager stateMachine;
+
+    public Vector2 MoveInput { get; set; }
     public bool IsGrounded { get; set; }
 
     private void Awake()
     {
-        mover = GetComponent<Mover>();
+        Mover = GetComponent<Mover>();
         stateMachine = new PlayerStateManager(this); // Initialize the state machine
         if (stateMachine == null)
         {
@@ -26,8 +28,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        MoveInput = new Vector2(Input.GetAxisRaw("Horizontal"), 0f); // Get horizontal input
+
         stateMachine.Tick(); // Update the current state
     }
-
-    public bool IsMoving => Input.GetAxis("Horizontal") != 0;
 }

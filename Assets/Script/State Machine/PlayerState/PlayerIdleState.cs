@@ -7,6 +7,7 @@ public class PlayerIdleState : BaseState<PlayerState, PlayerController>
     public PlayerIdleState(PlayerController context) : base(PlayerState.Idle, context) { }
     public override void EnterState()
     {
+        Context.Mover.Stop();
         Debug.Log("Enter Idle State");
     }
     public override void UpdateState()
@@ -19,7 +20,7 @@ public class PlayerIdleState : BaseState<PlayerState, PlayerController>
     }
     public override PlayerState GetNextState()
     {
-        if (Context.IsMoving)
+        if (Context.MoveInput != Vector2.zero)
         {
             return PlayerState.Walk;
         }
