@@ -460,7 +460,7 @@ GameObject:
   - component: {fileID: 1461446543}
   - component: {fileID: 1461446542}
   - component: {fileID: 1461446541}
-  - component: {fileID: 1461446540}
+  - component: {fileID: 1461446546}
   - component: {fileID: 1461446539}
   - component: {fileID: 1461446538}
   - component: {fileID: 1461446537}
@@ -470,7 +470,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1461446537
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,19 +512,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e866a8826ae0144cb2afadccc8867df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1461446540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1461446536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf5fe22faed53184493e75c43900d758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mover: {fileID: 0}
 --- !u!114 &1461446541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,7 +524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde7a1f93c9ae7044a58f9e7ce3c116f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stats: {fileID: 11400000, guid: 40f5e4685e6b99d4a837ad48f2cab22f, type: 2}
+  _stats: {fileID: 11400000, guid: 5b944a9baf4ac8248a6ed6b42d933b1b, type: 2}
 --- !u!61 &1461446542
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -677,6 +664,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1461446546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461446536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0df140cf4c939243b03faead98bd2d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mover: {fileID: 0}
+  Jumper: {fileID: 0}
+  GroundChecker: {fileID: 0}
 --- !u!1 &1660926266
 GameObject:
   m_ObjectHideFlags: 0

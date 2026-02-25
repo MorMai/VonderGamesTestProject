@@ -1,25 +1,59 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SlimePatrolState : BaseState<EnemyState, EnemyAI>
 {
+    private Vector2 _moveDir = Vector2.right;
+    private float _wallCheckDist = 0.6f;
+    private float _ledgeCheckDist = 1.0f;
+    private float _ledgeForwardOffset = 0.5f;
+
     public SlimePatrolState(EnemyAI context) : base(EnemyState.Patrol, context) { }
+
     public override void EnterState()
     {
-        Debug.Log("Enter Slime Patrol State");
+        // Set initial direction based on localScale 
+        _moveDir = Context.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
     }
+
     public override void UpdateState()
     {
-        //some logic
+        LayerMask mask = Context.GroundChecker.GroundLayer;
+        Vector2 pos = Context.transform.position;
+
+        // Check for Wall
+        RaycastHit2D wallHit = Physics2D.Raycast(pos, _moveDir, _wallCheckDist, mask);
+
+        // Check for Ledge 
+        Vector2 ledgeStart = pos + (Vector2.right * _moveDir.x * _ledgeForwardOffset);
+        RaycastHit2D ledgeHit = Physics2D.Raycast(ledgeStart, Vector2.down, _ledgeCheckDist, mask);
+
+        Debug.DrawRay(pos, _moveDir * _wallCheckDist, Color.red);
+        Debug.DrawRay(ledgeStart, Vector2.down * _ledgeCheckDist, Color.blue);
+
+        if (wallHit.collider != null || ledgeHit.collider == null) // If there's a wall ahead or no ground ahead flip direction
+        {
+            Flip();
+        }
+
+        Context.Mover.Move(_moveDir);
     }
-    public override void ExitState()
+
+    private void Flip()
     {
-        Debug.Log("Exit Slime Patrol State");
+        _moveDir *= -1f;
+        Vector3 scale = Context.transform.localScale;
+        scale.x *= -1f;
+        Context.transform.localScale = scale;
     }
+
+    public override void ExitState() => Context.Mover.Stop();
+
     public override EnemyState GetNextState()
     {
-        //some logic
-        return StateKey; // or SlimeState.Walk
+        if (Context.IsFoundPlayer)
+        {
+            return EnemyState.Chase;
+        }
+        return StateKey;
     }
 }
