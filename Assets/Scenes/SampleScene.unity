@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde7a1f93c9ae7044a58f9e7ce3c116f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 40f5e4685e6b99d4a837ad48f2cab22f, type: 2}
+  _stats: {fileID: 11400000, guid: 40f5e4685e6b99d4a837ad48f2cab22f, type: 2}
 --- !u!212 &1194361074
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -385,9 +385,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce3ad1f5afc2ee48bb3020fbc3e1179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxSize: {x: 1.5, y: 0.2}
-  castDistance: 0.5
-  groundLayer:
+  _boxSize: {x: 1.5, y: 0.2}
+  _castDistance: 0.5
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 8
 --- !u!114 &1194361078
