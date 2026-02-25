@@ -7,12 +7,5 @@ public enum EnemyState
     Patrol,
     Chase,
     Attack,
-    Hurt,
-    Dead
-}
-
-public interface IEnemyStateManager
-{
-    void TransitionTo(EnemyState state);
-    EnemyState GetCurrentState();
+    Hurt
 }

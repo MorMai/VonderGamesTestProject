@@ -1,8 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public abstract class EnemyAI : MonoBehaviour
 {
-    private IEnemyStateManager _stateManager;
+    public Mover Mover;
+
+    protected virtual void Awake()
+    {
+        Mover = GetComponent<Mover>();
+        InitializeStateManager();
+    }
+
+    protected abstract void InitializeStateManager();
 }
