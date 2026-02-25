@@ -6,7 +6,7 @@ public class Detector : MonoBehaviour
     [SerializeField] private LayerMask _playerLayer; // Set this to layer that you want to detect
 
     public Transform CurrentTarget { get; private set; }
-    public bool IsPlayerDetected => CurrentTarget != null;
+    public bool IsTargetDetected => CurrentTarget != null;
 
     private void Update()
     {

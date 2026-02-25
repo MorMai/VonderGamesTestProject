@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class SlimeIdleState : BaseState<EnemyState, EnemyAI>
 {
-    private float idleTime;
+    private float _idleTime;
     public SlimeIdleState(EnemyAI context) : base(EnemyState.Idle, context) { }
     public override void EnterState()
     {
         Context.Mover.Stop();
-        idleTime = Random.Range(2f, 5f); // Random idle time between 2 and 5 seconds
+        _idleTime = Random.Range(2f, 5f); // Random idle time between 2 and 5 seconds
         Debug.Log("Enter Slime Idle State");
     }
     public override void UpdateState()
     {
-        if (idleTime > 0)
+        if (_idleTime > 0)
         {
-            idleTime -= Time.deltaTime;
+            _idleTime -= Time.deltaTime;
         }
     }
     public override void ExitState()
@@ -25,7 +25,11 @@ public class SlimeIdleState : BaseState<EnemyState, EnemyAI>
     }
     public override EnemyState GetNextState()
     {
-        if (idleTime <= 0)
+        if(Context.Target != null)
+        {
+            return EnemyState.Chase; 
+        }
+        if (_idleTime <= 0)
         {
             return EnemyState.Patrol; // Transition to Patrol after idling
         }

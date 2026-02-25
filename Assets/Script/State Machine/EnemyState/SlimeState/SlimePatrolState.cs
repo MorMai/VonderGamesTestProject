@@ -6,11 +6,13 @@ public class SlimePatrolState : BaseState<EnemyState, EnemyAI>
     private float _wallCheckDist = 0.6f;
     private float _ledgeCheckDist = 1.0f;
     private float _ledgeForwardOffset = 0.5f;
+    private float _patrolTime;
 
     public SlimePatrolState(EnemyAI context) : base(EnemyState.Patrol, context) { }
 
     public override void EnterState()
     {
+        _patrolTime = Random.Range(3f, 6f); 
         // Set initial direction based on localScale 
         _moveDir = Context.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
     }
@@ -35,6 +37,11 @@ public class SlimePatrolState : BaseState<EnemyState, EnemyAI>
             Flip();
         }
 
+        if (_patrolTime > 0)
+        {
+            _patrolTime -= Time.deltaTime;
+        }
+
         Context.Mover.Move(_moveDir);
     }
 
@@ -53,6 +60,10 @@ public class SlimePatrolState : BaseState<EnemyState, EnemyAI>
         if (Context.IsFoundPlayer)
         {
             return EnemyState.Chase;
+        }
+        if (_patrolTime <= 0)
+        {
+            return EnemyState.Idle; 
         }
         return StateKey;
     }
