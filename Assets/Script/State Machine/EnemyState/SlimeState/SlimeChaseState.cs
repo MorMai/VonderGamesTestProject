@@ -7,7 +7,7 @@ public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
     public SlimeChaseState(EnemyAI context) : base(EnemyState.Chase, context) { }
     public override void EnterState()
     {
-        Debug.Log("Enter Slime Follow State");
+        Debug.Log("Enter Slime Chase State");
     }
     public override void UpdateState()
     {
@@ -15,11 +15,11 @@ public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
     }
     public override void ExitState()
     {
-        Debug.Log("Exit Slime Follow State");
+        Debug.Log("Exit Slime Chase State");
     }
     public override EnemyState GetNextState()
     {
         //some logic
-        return StateKey; // or SlimeState.Follow
+        return StateKey; // or EnemyState.Chase
     }
 }

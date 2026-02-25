@@ -9,7 +9,7 @@ public abstract class EnemyAI : MonoBehaviour
     public Jumper Jumper;
     public GroundChecker GroundChecker;
     public StateManager<EnemyState, EnemyAI> StateMachine;
-
+    public Transform Target { get; set; }
     public bool IsFoundPlayer { get; set; }
     public bool IsChasing { get; set; }
     public bool IsGrounded => GroundChecker.CheckIsGround();

@@ -14,6 +14,7 @@ public class PlayerRunState : BaseState<PlayerState, PlayerController>
     {
         // Run State logic
         Context.Mover.Move(Context.MoveInput * Context.CurrentSpeedMultiplier);
+        Context.HandleFlip();
     }
 
     public override void ExitState()

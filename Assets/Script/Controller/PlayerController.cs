@@ -40,4 +40,13 @@ public class PlayerController : MonoBehaviour
         IsRunning = Input.GetKey(KeyCode.LeftShift); 
         _stateMachine.Tick(); // Update the current state
     }
+
+    public void HandleFlip()
+    {
+        if (Mathf.Abs(MoveInput.x) > 0.1f)
+        {
+            // This ensures hitboxes and child objects flip too
+            transform.localScale = new Vector3(Mathf.Sign(MoveInput.x), 1, 1);
+        }
+    }
 }

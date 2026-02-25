@@ -15,6 +15,8 @@ public class PlayerWalkState : BaseState<PlayerState, PlayerController>
     {
         // Walk State logic
         Context.Mover.Move(Context.MoveInput);
+        //Flip 
+        Context.HandleFlip();
     }
 
     public override void ExitState()
