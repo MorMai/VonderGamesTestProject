@@ -1,7 +1,6 @@
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-
 public class Attack : MonoBehaviour, IRequireStats
 {
     private float minDamage;
@@ -13,7 +12,7 @@ public class Attack : MonoBehaviour, IRequireStats
     }
     public void ExecuteAttack(GameObject target)
     {
-        float attackDamage = Random.Range(minDamage, maxDamage);
+        float attackDamage = Mathf.CeilToInt(Random.Range(minDamage, maxDamage));
 
         if(target.TryGetComponent<IDamageable>(out var damageable))
         {

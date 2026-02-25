@@ -9,6 +9,7 @@ public abstract class EnemyAI : MonoBehaviour
     public Jumper Jumper;
     public GroundChecker GroundChecker;
     public Detector Detector;
+    public Attack Attack;
     public StateManager<EnemyState, EnemyAI> StateMachine;
     public Transform Target { get; set; }
     public bool IsFoundPlayer { get; set; }
@@ -21,6 +22,7 @@ public abstract class EnemyAI : MonoBehaviour
         Jumper = GetComponent<Jumper>();
         GroundChecker = GetComponent<GroundChecker>();
         Detector = GetComponent<Detector>();
+        Attack = GetComponent<Attack>();
         InitializeStateManager();
     }
 
@@ -36,8 +38,21 @@ public abstract class EnemyAI : MonoBehaviour
             Target = Detector.CurrentTarget;
         }
 
+
         StateMachine?.Tick();
     }
 
     protected abstract void InitializeStateManager();
+
+    //just for testing, remove this later
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            if(Attack != null)
+            {
+                Attack.ExecuteAttack(collision.gameObject);
+            }
+        }
+    }
 }
