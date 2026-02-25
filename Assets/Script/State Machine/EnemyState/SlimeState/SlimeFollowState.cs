@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeAttackState : BaseState<EnemyState, EnemyAI>
+public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
 {
-    public SlimeAttackState(EnemyAI context) : base(EnemyState.Attack, context) { }
+    public SlimeChaseState(EnemyAI context) : base(EnemyState.Chase, context) { }
     public override void EnterState()
     {
-        Debug.Log("Enter Slime Attack State");
+        Debug.Log("Enter Slime Follow State");
     }
     public override void UpdateState()
     {
@@ -15,11 +15,11 @@ public class SlimeAttackState : BaseState<EnemyState, EnemyAI>
     }
     public override void ExitState()
     {
-        Debug.Log("Exit Slime Attack State");
+        Debug.Log("Exit Slime Follow State");
     }
     public override EnemyState GetNextState()
     {
         //some logic
-        return StateKey; // or EnemyState.Attack
+        return StateKey; // or SlimeState.Follow
     }
 }

@@ -2,20 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SlimeState
-{
-    Idle,
-    Walk,
-    Attack
-}
-
-public class SlimeStateManager : StateManager<SlimeState, EnemyAI>
+public class SlimeStateManager : StateManager<EnemyState, EnemyAI>
 {
     public SlimeStateManager(EnemyAI controller)
     {
-        States.Add(SlimeState.Idle, new SlimeIdleState(controller));
-        States.Add(SlimeState.Walk, new SlimeWalkState(controller));
-        States.Add(SlimeState.Attack, new SlimeAttackState(controller));
-        CurrentState = States[SlimeState.Idle];
+        States.Add(EnemyState.Idle, new SlimeIdleState(controller));
+        States.Add(EnemyState.Patrol, new SlimePatrolState(controller));
+        States.Add(EnemyState.Chase, new SlimeChaseState(controller));
+        States.Add(EnemyState.Attack, new SlimeAttackState(controller));
+        CurrentState = States[EnemyState.Idle];
     }
 }
