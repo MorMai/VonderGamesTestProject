@@ -1,7 +1,7 @@
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-public class Attack : IRequireStats
+public class Attack : MonoBehaviour, IRequireStats
 {
     private float minDamage;
     private float maxDamage;

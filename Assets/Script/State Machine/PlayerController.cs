@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public Mover Mover;
     public Jumper Jumper;
     public GroundChecker GroundChecker;
-    private PlayerStateManager stateMachine;
+    private PlayerStateManager _stateMachine;
 
     public bool IsRunning { get; set; }
     public float CurrentSpeedMultiplier => IsRunning ? 2.0f : 1.0f;
@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour
         Mover = GetComponent<Mover>();
         Jumper = GetComponent<Jumper>();
         GroundChecker = GetComponent<GroundChecker>();
-        stateMachine = new PlayerStateManager(this); // Initialize the state machine
-        if (stateMachine == null)
+        _stateMachine = new PlayerStateManager(this); // Initialize the state machine
+        if (_stateMachine == null)
         {
             Debug.LogError("PlayerStateManager component not found on PlayerController GameObject.");
         }
@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        stateMachine.Initialize(PlayerState.Idle); // Enter the initial state
+        _stateMachine.Initialize(PlayerState.Idle); // Enter the initial state
     }
 
     private void Update()
@@ -38,6 +38,6 @@ public class PlayerController : MonoBehaviour
         MoveInput = new Vector2(Input.GetAxisRaw("Horizontal"), 0f); // Get horizontal input
         JumpPressed = Input.GetButtonDown("Jump"); // Check if jump button is pressed
         IsRunning = Input.GetKey(KeyCode.LeftShift); 
-        stateMachine.Tick(); // Update the current state
+        _stateMachine.Tick(); // Update the current state
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntitySetup : MonoBehaviour
 {
-    [SerializeField] private EntityData stats;
+    [SerializeField] private EntityData _stats;
 
     private void Awake()
     {
@@ -13,7 +13,7 @@ public class EntitySetup : MonoBehaviour
 
         foreach (IRequireStats receiver in statReceivers)
         {
-            receiver.Initialize(stats);
+            receiver.Initialize(_stats);
         }
     }
 }
