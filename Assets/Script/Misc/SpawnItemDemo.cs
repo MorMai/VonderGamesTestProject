@@ -34,4 +34,5 @@ public class SpawnItemDemo : MonoBehaviour
             Debug.Log("No item selected.");
         }
     }
+ 
 }
