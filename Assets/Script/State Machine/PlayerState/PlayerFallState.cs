@@ -13,7 +13,7 @@ public class PlayerFallState : BaseState<PlayerState, PlayerController>
     public override void UpdateState()
     {
         // Fall State logic
-        Context.Mover.Move(Context.MoveInput); // Allow air control
+        Context.Mover.Move(Context.MoveInput * Context.CurrentSpeedMultiplier); // Allow air control
     }
 
     public override void ExitState()
