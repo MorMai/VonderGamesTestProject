@@ -3,23 +3,27 @@ using UnityEngine;
 public class Detector : MonoBehaviour
 {
     [SerializeField] private float _detectionRadius = 5f;
-    [SerializeField] private LayerMask _playerLayer; // Set this to layer that you want to detect
+    [SerializeField] private string _targetTag = "Player"; // change to tag
 
     public Transform CurrentTarget { get; private set; }
     public bool IsTargetDetected => CurrentTarget != null;
 
     private void Update()
     {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, _detectionRadius, _playerLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _detectionRadius);
 
-        if (hit != null)
+        Transform foundTarget = null;
+
+        foreach (var hit in hits)
         {
-            CurrentTarget = hit.transform;
+            if (hit.CompareTag(_targetTag))
+            {
+                foundTarget = hit.transform;
+                break; 
+            }
         }
-        else
-        {
-            CurrentTarget = null;
-        }
+
+        CurrentTarget = foundTarget;
     }
 
     private void OnDrawGizmos()
