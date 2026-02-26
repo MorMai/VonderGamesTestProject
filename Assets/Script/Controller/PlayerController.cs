@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public Mover Mover;
     public Jumper Jumper;
+    public Transform Visuals;
     public GroundChecker GroundChecker;
     private PlayerStateManager _stateMachine;
 
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
         Mover = GetComponent<Mover>();
         Jumper = GetComponent<Jumper>();
         GroundChecker = GetComponent<GroundChecker>();
+        if (Visuals == null) Visuals = transform.Find("Visuals");
         _stateMachine = new PlayerStateManager(this); // Initialize the state machine
         if (_stateMachine == null)
         {
@@ -45,8 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Mathf.Abs(MoveInput.x) > 0.1f)
         {
-            // This ensures hitboxes and child objects flip too
-            transform.localScale = new Vector3(Mathf.Sign(MoveInput.x), 1, 1);
+            Visuals.transform.localScale = new Vector3(Mathf.Sign(MoveInput.x), 1, 1);
         }
     }
 }

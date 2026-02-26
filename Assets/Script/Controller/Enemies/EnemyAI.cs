@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public abstract class EnemyAI : MonoBehaviour
 {
     public Mover Mover;
+    public Transform Visuals;
     public Jumper Jumper;
     public GroundChecker GroundChecker;
     public Detector Detector;
@@ -23,6 +26,7 @@ public abstract class EnemyAI : MonoBehaviour
         GroundChecker = GetComponent<GroundChecker>();
         Detector = GetComponent<Detector>();
         Attack = GetComponent<Attack>();
+        if (Visuals == null) Visuals = transform.Find("Visuals");
         InitializeStateManager();
     }
 
@@ -53,6 +57,20 @@ public abstract class EnemyAI : MonoBehaviour
             {
                 Attack.ExecuteAttack(other.gameObject);
             }
+        }
+    }
+
+    public void UpdateFacing(float xDir)
+    {
+        if (Visuals == null || Mathf.Approximately(xDir, 0)) return;
+
+        Vector3 scale = Visuals.localScale;
+
+        // Check if we need to flip based on direction
+        if ((xDir > 0 && scale.x < 0) || (xDir < 0 && scale.x > 0))
+        {
+            scale.x *= -1;
+            Visuals.localScale = scale;
         }
     }
 }

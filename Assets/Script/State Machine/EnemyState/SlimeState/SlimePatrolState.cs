@@ -34,7 +34,7 @@ public class SlimePatrolState : BaseState<EnemyState, EnemyAI>
 
         if (wallHit.collider != null || ledgeHit.collider == null) // If there's a wall ahead or no ground ahead flip direction
         {
-            Flip();
+            Context.UpdateFacing(_moveDir.x);
         }
 
         if (_patrolTime > 0)
@@ -43,14 +43,6 @@ public class SlimePatrolState : BaseState<EnemyState, EnemyAI>
         }
 
         Context.Mover.Move(_moveDir);
-    }
-
-    private void Flip()
-    {
-        _moveDir *= -1f;
-        Vector3 scale = Context.transform.localScale;
-        scale.x *= -1f;
-        Context.transform.localScale = scale;
     }
 
     public override void ExitState() => Context.Mover.Stop();

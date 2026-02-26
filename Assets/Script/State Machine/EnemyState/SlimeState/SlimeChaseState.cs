@@ -3,6 +3,7 @@ using UnityEngine;
 public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
 {
     private float _jumpCheckDistance = 1f; // How close to a wall before jumping
+    private float _stoppingDistance = 0.5f; 
 
     public SlimeChaseState(EnemyAI context) : base(EnemyState.Chase, context) { }
 
@@ -16,26 +17,23 @@ public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
         if (Context.Target == null) return;
 
         float diff = Context.Target.position.x - Context.transform.position.x;
-        Vector2 moveDir = diff > 0 ? Vector2.right : Vector2.left;
+        float distance = Mathf.Abs(diff);
 
-        UpdateFacing(moveDir.x);
-
-        if (CheckForWall(moveDir) && Context.IsGrounded)
+        if (distance > _stoppingDistance)
         {
-            Context.Jumper.Jump(); // Assuming Jumper has a Jump() method
+            Vector2 moveDir = diff > 0 ? Vector2.right : Vector2.left;
+            Context.UpdateFacing(moveDir.x);
+
+            if (CheckForWall(moveDir) && Context.IsGrounded)
+            {
+                Context.Jumper.Jump(); // Assuming Jumper has a Jump() method
+            }
+
+            Context.Mover.Move(moveDir * 1.5f); // Amplify speed for chasing
         }
-
-        Context.Mover.Move(moveDir * 1.5f); // Amplify speed for chasing
-    }
-
-    private void UpdateFacing(float xDir)
-    {
-        // Flip the scale to face the target
-        Vector3 scale = Context.transform.localScale;
-        if ((xDir > 0 && scale.x < 0) || (xDir < 0 && scale.x > 0))
+        else
         {
-            scale.x *= -1;
-            Context.transform.localScale = scale;
+            Context.Mover.Stop();
         }
     }
 
