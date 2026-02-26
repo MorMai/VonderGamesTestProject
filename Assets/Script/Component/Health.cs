@@ -37,4 +37,10 @@ public class Health : MonoBehaviour, IRequireStats, IDamageable
             OnDeath?.Invoke();
         }
     }
+
+    public void ResetHealth()
+    {
+        _currentHealth = _maxHealth;
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+    }
 }

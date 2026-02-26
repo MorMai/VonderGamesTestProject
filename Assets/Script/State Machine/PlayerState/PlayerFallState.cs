@@ -8,7 +8,6 @@ public class PlayerFallState : BaseState<PlayerState, PlayerController>
 
     public override void EnterState()
     {
-        Debug.Log("Enter Fall State");
     }
 
     public override void UpdateState()
@@ -19,7 +18,6 @@ public class PlayerFallState : BaseState<PlayerState, PlayerController>
 
     public override void ExitState()
     {
-        Debug.Log("Exit Fall State");
     }
 
     public override PlayerState GetNextState()

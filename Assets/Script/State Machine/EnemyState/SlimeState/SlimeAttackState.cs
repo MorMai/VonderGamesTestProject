@@ -17,8 +17,6 @@ public class SlimeAttackState : BaseState<EnemyState, EnemyAI>
         _hasJumped = false;
 
         Context.Mover.Stop();
-
-        Debug.Log("Slime preparing to attack!");
     }
 
     public override void UpdateState()

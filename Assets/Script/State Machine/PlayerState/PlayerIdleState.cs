@@ -8,7 +8,6 @@ public class PlayerIdleState : BaseState<PlayerState, PlayerController>
     public override void EnterState()
     {
         Context.Mover.Stop();
-        Debug.Log("Enter Idle State");
     }
     public override void UpdateState()
     {
@@ -16,7 +15,6 @@ public class PlayerIdleState : BaseState<PlayerState, PlayerController>
     }
     public override void ExitState()
     {
-        Debug.Log("Exit Idle State");
     }
     public override PlayerState GetNextState()
     {

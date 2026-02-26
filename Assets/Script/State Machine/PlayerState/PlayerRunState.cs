@@ -7,7 +7,6 @@ public class PlayerRunState : BaseState<PlayerState, PlayerController>
     public PlayerRunState(PlayerController context) : base(PlayerState.Run, context) { }
     public override void EnterState()
     {
-        Debug.Log("Enter Run State");
     }
 
     public override void UpdateState()
@@ -19,7 +18,6 @@ public class PlayerRunState : BaseState<PlayerState, PlayerController>
 
     public override void ExitState()
     {
-        Debug.Log("Exit Run State");
     }
 
     public override PlayerState GetNextState()

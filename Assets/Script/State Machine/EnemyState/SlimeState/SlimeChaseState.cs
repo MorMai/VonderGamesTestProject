@@ -12,7 +12,6 @@ public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
 
     public override void EnterState()
     {
-        Debug.Log("Slime is chasing the target!");
         _lostSightTimer = 0f;
     }
 

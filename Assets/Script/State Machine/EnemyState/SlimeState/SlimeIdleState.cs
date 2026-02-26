@@ -10,7 +10,6 @@ public class SlimeIdleState : BaseState<EnemyState, EnemyAI>
     {
         Context.Mover.Stop();
         _idleTime = Random.Range(2f, 5f); // Random idle time between 2 and 5 seconds
-        Debug.Log("Enter Slime Idle State");
     }
     public override void UpdateState()
     {
@@ -21,7 +20,6 @@ public class SlimeIdleState : BaseState<EnemyState, EnemyAI>
     }
     public override void ExitState()
     {
-        Debug.Log("Exit Slime Idle State");
     }
     public override EnemyState GetNextState()
     {

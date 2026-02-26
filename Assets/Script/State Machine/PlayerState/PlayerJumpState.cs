@@ -12,7 +12,6 @@ public class PlayerJumpState : BaseState<PlayerState, PlayerController>
 
     public override void EnterState()
     {
-        Debug.Log("Enter Jump State");
         // Jump State logic
         Context.Jumper.Jump();
     }
@@ -25,7 +24,6 @@ public class PlayerJumpState : BaseState<PlayerState, PlayerController>
 
     public override void ExitState()
     {
-        Debug.Log("Exit Jump State");
     }
 
     public override PlayerState GetNextState()
