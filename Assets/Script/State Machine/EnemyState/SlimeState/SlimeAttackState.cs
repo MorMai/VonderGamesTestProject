@@ -13,6 +13,7 @@ public class SlimeAttackState : BaseState<EnemyState, EnemyAI>
 
     public override void EnterState()
     {
+        _horizontalJumpVelocity = Random.Range(1f, 6f); // add some variability
         _cooldownTimer = 0f;
         _hasJumped = false;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
 {
     private float _jumpCheckDistance = 1f; // How close to a wall before jumping
-    private float _stoppingDistance = 2f;
+    private float _stoppingDistance = 2.5f;
     private float _forgetPlayerTime = 3f; // Time to forget player after losing sight
     private float _lostSightTimer;
 

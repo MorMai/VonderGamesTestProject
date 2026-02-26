@@ -12,4 +12,5 @@ public class EntityData : ScriptableObject
     public float jumpHeight;
     public float moveSpeed;
     public float attackSpeed;
+    public float arcana;
 }
