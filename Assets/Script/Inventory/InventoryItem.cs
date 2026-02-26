@@ -2,13 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.EventSystems;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Image image;
-    [HideInInspector]
-    public Transform parentAfterDrag;
+    public TextMeshProUGUI countText;
+
+    [HideInInspector] public ItemData item;
+    [HideInInspector] public int count = 1;
+    [HideInInspector] public Transform parentAfterDrag;
+
+    public void Start()
+    {
+        InitialiseItem(item);
+    }
+    public void InitialiseItem(ItemData newItem)
+    {
+        item = newItem;
+        image.sprite = item.itemIcon; 
+        RefreshCount();
+    } 
+
+    public void RefreshCount()
+    {
+        countText.text = count.ToString();
+        bool TextActive = count > 1;
+        countText.gameObject.SetActive(TextActive);
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
         image.raycastTarget = false; // Allow raycasts to pass through while dragging
