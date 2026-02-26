@@ -26,8 +26,6 @@ public class Detector : MonoBehaviour
                     foundTarget = hit.transform;
                 }
 
-                foundTarget = hit.transform;
-                break; 
             }
         }
 
