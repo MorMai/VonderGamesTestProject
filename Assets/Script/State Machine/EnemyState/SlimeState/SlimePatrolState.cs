@@ -13,8 +13,8 @@ public class SlimePatrolState : BaseState<EnemyState, EnemyAI>
     public override void EnterState()
     {
         _patrolTime = Random.Range(3f, 6f); 
-        // Set initial direction based on localScale 
-        _moveDir = Context.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
+        // Random move dir
+        _moveDir = Random.value > 0.5f ? Vector2.right : Vector2.left;
     }
 
     public override void UpdateState()
@@ -34,6 +34,7 @@ public class SlimePatrolState : BaseState<EnemyState, EnemyAI>
 
         if (wallHit.collider != null || ledgeHit.collider == null) // If there's a wall ahead or no ground ahead flip direction
         {
+            _moveDir *= -1;
             Context.UpdateFacing(_moveDir.x);
         }
 

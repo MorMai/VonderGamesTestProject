@@ -1,9 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
 {
     private float _jumpCheckDistance = 1f; // How close to a wall before jumping
-    private float _stoppingDistance = 0.5f; 
+    private float _stoppingDistance = 2f;
 
     public SlimeChaseState(EnemyAI context) : base(EnemyState.Chase, context) { }
 
@@ -50,6 +51,13 @@ public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
 
     public override EnemyState GetNextState()
     {
+        float diff = Context.Target != null ? Context.Target.position.x - Context.transform.position.x : 0f;
+        float distance = Mathf.Abs(diff);
+
+        if (distance <= _stoppingDistance)
+        {
+            return EnemyState.Attack;
+        }
         // If the player is gone or out of range, go back to Patrol or Idle
         if (!Context.IsFoundPlayer || Context.Target == null)
         {
