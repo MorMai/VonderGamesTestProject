@@ -5,17 +5,34 @@ public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
 {
     private float _jumpCheckDistance = 1f; // How close to a wall before jumping
     private float _stoppingDistance = 2f;
+    private float _forgetPlayerTime = 3f; // Time to forget player after losing sight
+    private float _lostSightTimer;
 
     public SlimeChaseState(EnemyAI context) : base(EnemyState.Chase, context) { }
 
     public override void EnterState()
     {
         Debug.Log("Slime is chasing the target!");
+        _lostSightTimer = 0f;
     }
 
     public override void UpdateState()
     {
-        if (Context.Target == null) return;
+        if (Context.Target == null)
+        {
+            _lostSightTimer += Time.deltaTime;
+            return;
+        }
+
+        if (Context.IsFoundPlayer)
+        {
+            _lostSightTimer = 0f; // Reset if player is visible
+        }
+        else
+        {
+            _lostSightTimer += Time.deltaTime;
+        }
+
 
         float diff = Context.Target.position.x - Context.transform.position.x;
         float distance = Mathf.Abs(diff);
@@ -54,12 +71,20 @@ public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
         float diff = Context.Target != null ? Context.Target.position.x - Context.transform.position.x : 0f;
         float distance = Mathf.Abs(diff);
 
+        if (Context.Target == null)
+        {
+            if (_lostSightTimer >= _forgetPlayerTime)
+                return EnemyState.Idle;
+
+            return StateKey;
+        }
+
         if (distance <= _stoppingDistance)
         {
             return EnemyState.Attack;
         }
         // If the player is gone or out of range, go back to Patrol or Idle
-        if (!Context.IsFoundPlayer || Context.Target == null)
+        if (!Context.IsFoundPlayer && _lostSightTimer >= _forgetPlayerTime)
         {
             return EnemyState.Idle;
         }

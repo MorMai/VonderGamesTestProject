@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class SlimeAttackState : BaseState<EnemyState, EnemyAI>
 {
-    private float _attackCooldown = 1.5f; 
-    private float _horizontalJumpVelocity = 2f;
+    private float _attackCooldown = 0.75f; //changing this causes slime aggressive 
+    private float _horizontalJumpVelocity = 2.5f;
 
     private float _cooldownTimer;
     private bool _hasJumped;
