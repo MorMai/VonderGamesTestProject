@@ -45,13 +45,13 @@ public abstract class EnemyAI : MonoBehaviour
     protected abstract void InitializeStateManager();
 
     //just for testing, remove this later
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player"))
         {
             if(Attack != null)
             {
-                Attack.ExecuteAttack(collision.gameObject);
+                Attack.ExecuteAttack(other.gameObject);
             }
         }
     }

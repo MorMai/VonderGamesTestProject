@@ -1028,7 +1028,7 @@ Transform:
   m_GameObject: {fileID: 1194361070}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: -0.82, z: 0}
+  m_LocalPosition: {x: -4.85, y: -0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1252,7 +1252,7 @@ GameObject:
   - component: {fileID: 1461446537}
   - component: {fileID: 1461446548}
   - component: {fileID: 1461446547}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1312,7 +1312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde7a1f93c9ae7044a58f9e7ce3c116f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _stats: {fileID: 11400000, guid: ebabc121efe3e2543812db68a36fd25e, type: 2}
+  _stats: {fileID: 11400000, guid: 5b944a9baf4ac8248a6ed6b42d933b1b, type: 2}
 --- !u!61 &1461446542
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1446,7 +1446,7 @@ Transform:
   m_GameObject: {fileID: 1461446536}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 1.81, z: 0}
+  m_LocalPosition: {x: 6.91, y: 1.95, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1482,9 +1482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _detectionRadius: 5
-  _playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  _targetTag: Player
 --- !u!114 &1461446548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1497,6 +1495,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04ae35f703c9d7d4a875608c3bfdd38a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockbackForce: 10
+  knockbackVerticalBoost: 2
 --- !u!1 &1565596222
 GameObject:
   m_ObjectHideFlags: 0
