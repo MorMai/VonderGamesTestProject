@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IStateMachineHost
 {
     public Mover Mover;
     public Jumper Jumper;
@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour
         JumpPressed = Input.GetButtonDown("Jump"); // Check if jump button is pressed
         IsRunning = Input.GetKey(KeyCode.LeftShift); 
         _stateMachine.Tick(); // Update the current state
+    }
+
+    public string GetCurrentStateName()
+    {
+        return _stateMachine != null ? _stateMachine.CurrentStateKey.ToString() : string.Empty;
     }
 
     public void HandleFlip()

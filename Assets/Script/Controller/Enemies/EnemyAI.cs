@@ -5,7 +5,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public abstract class EnemyAI : MonoBehaviour
+public abstract class EnemyAI : MonoBehaviour, IStateMachineHost
 {
     public Mover Mover;
     public Transform Visuals;
@@ -58,6 +58,11 @@ public abstract class EnemyAI : MonoBehaviour
                 Attack.ExecuteAttack(other.gameObject);
             }
         }
+    }
+
+    public string GetCurrentStateName()
+    {
+        return StateMachine != null ? StateMachine.CurrentStateKey.ToString() : string.Empty;
     }
 
     public void UpdateFacing(float xDir)

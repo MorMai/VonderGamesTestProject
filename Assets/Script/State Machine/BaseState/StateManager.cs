@@ -4,9 +4,11 @@ using System;
 
 public class StateManager<EState, TContext> where EState : Enum
 {
+    public event Action<EState, EState> OnStateChanged;
     protected Dictionary<EState, BaseState<EState,TContext>> States = new Dictionary<EState, BaseState<EState, TContext>>(); // A dictionary to hold the states of the state machine
     protected BaseState<EState, TContext> CurrentState; // The current state of the state machine
     protected bool IsTransitioningState = false;
+    public EState CurrentStateKey => CurrentState.StateKey;
 
     // use this instead of start
     public void Initialize(EState startingState)
@@ -32,17 +34,24 @@ public class StateManager<EState, TContext> where EState : Enum
         }
     }
 
-    public void TransitionToState(EState StateKey)
+    public void TransitionToState(EState newStateKey)
     {
         IsTransitioningState = true;
+        EState previousStateKey = CurrentState.StateKey;
         CurrentState.ExitState(); // Exit the current state
-        CurrentState = States[StateKey]; // Set the current state to the new state
+        CurrentState = States[newStateKey]; // Set the current state to the new state
         CurrentState.EnterState(); // Enter the new state
         IsTransitioningState = false;
+        OnStateChanged?.Invoke(previousStateKey, newStateKey);
     }
 
     // Use Unity event, allowing me to handle trigger events in the states
     private void OnTriggerEnter(Collider other) => CurrentState.OnTriggerEnter(other);
     private void OnTriggerStay(Collider other) => CurrentState.OnTriggerStay(other);
     private void OnTriggerExit(Collider other) => CurrentState.OnTriggerExit(other);
+
+    public EState GetCurrentStateKey()
+    {
+        return CurrentState.StateKey;
+    }
 }
