@@ -11,13 +11,21 @@ public class Detector : MonoBehaviour
     private void Update()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _detectionRadius);
-
+        float closestDistance = Mathf.Infinity;
         Transform foundTarget = null;
 
         foreach (var hit in hits)
         {
             if (hit.CompareTag(_targetTag))
             {
+                float distance = Vector2.Distance(transform.position, hit.transform.position);
+
+                if (distance < closestDistance) // check if this target is closer than the previously found target
+                {
+                    closestDistance = distance;
+                    foundTarget = hit.transform;
+                }
+
                 foundTarget = hit.transform;
                 break; 
             }
