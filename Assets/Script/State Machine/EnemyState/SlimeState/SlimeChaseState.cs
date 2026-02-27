@@ -17,7 +17,6 @@ public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
 
     public override void UpdateState()
     {
-        Debug.Log("Chasing target: " + Context.Target);
         if (Context.Target == null)
         {
             _lostSightTimer += Time.deltaTime;

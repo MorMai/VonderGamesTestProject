@@ -1,0 +1,24 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TimeArcaneReset : MonoBehaviour
+{
+    [SerializeField] private Arcane Arcane;
+    [SerializeField] private TimeSystem timeSystem;
+
+    private void OnEnable()
+    {
+        timeSystem.OnTimeChanged += HandleTimeChanged;
+    }
+
+    private void OnDisable()
+    {
+        timeSystem.OnTimeChanged -= HandleTimeChanged;
+    }
+
+    private void HandleTimeChanged(DayPeriod period, WeekDay day, int dayIndex)
+    {
+        Arcane.ResetArcane();
+    }
+}

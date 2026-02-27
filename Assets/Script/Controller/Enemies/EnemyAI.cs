@@ -40,7 +40,6 @@ public abstract class EnemyAI : MonoBehaviour, IStateMachineHost
     }
     protected virtual void Update()
     {
-        Debug.Log("Update Target = " + Target);
         if (Detector != null)
         {
             IsFoundPlayer = Detector.IsTargetDetected;
@@ -90,14 +89,10 @@ public abstract class EnemyAI : MonoBehaviour, IStateMachineHost
 
     private void HandleDamaged(Transform attacker)
     {
-        Debug.Log("HandleDamaged called. Attacker = " + attacker);
-
         if (attacker == null)
             return;
 
         Target = attacker;
-        Debug.Log("Target set to: " + Target);
-
         IsFoundPlayer = true;
         IsChasing = true;
 
