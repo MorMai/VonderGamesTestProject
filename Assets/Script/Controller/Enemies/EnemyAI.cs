@@ -59,8 +59,13 @@ public abstract class EnemyAI : MonoBehaviour, IStateMachineHost
     protected abstract void InitializeStateManager();
     private void OnTriggerEnter2D(Collider2D other)
     {
-        IDamageable damageable =
-        other.GetComponentInParent<IDamageable>();
+        if (other.transform == transform)
+            return;
+
+        if (other.GetComponentInParent<EnemyAI>() != null)
+            return; // Ignore other enemies, doing this for now but might change later
+
+        IDamageable damageable = other.GetComponentInParent<IDamageable>();
 
         if (damageable == null)
             return;

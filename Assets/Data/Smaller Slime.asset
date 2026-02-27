@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Smaller Slime
   m_EditorClassIdentifier: 
   EntityName: Smaller Slime
-  health: 5
+  health: 10
   minDamage: 1
   maxDamage: 5
   jumpHeight: 15
   moveSpeed: 4
   attackSpeed: 1
+  arcane: 0
+  arcaneRegenRate: 0
