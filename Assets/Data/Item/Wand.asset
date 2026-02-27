@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f297dd7811193498a1bd340ea5c099, type: 3}
   m_Name: Wand
   m_EditorClassIdentifier: 
-  itemName: Basic Wand
+  itemName: Test Wand
   itemIcon: {fileID: 21300000, guid: 7182c043245e33e47bcaf13f24e8228d, type: 3}
-  description: It's a basic wand for starter mage!
+  description: for test
   isStackable: 0
+  isEquippable: 0
+  itemPrefab: {fileID: 0}

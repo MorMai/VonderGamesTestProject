@@ -10,6 +10,7 @@ public class ItemData : ScriptableObject
     public Sprite itemIcon;
     public string description;
     public bool isStackable;
+    public bool isEquippable;
 
     [Header("Item Model")]
     public GameObject itemPrefab;

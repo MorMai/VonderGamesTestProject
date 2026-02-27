@@ -9,6 +9,8 @@ public class InventoryManager : MonoBehaviour
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
+    public System.Action<ItemData> OnSelectedItemChanged;
+
     int selectedSlot = -1;
 
     private void Start()
@@ -28,6 +30,7 @@ public class InventoryManager : MonoBehaviour
                 {
                     inventorySlots[selectedSlot].Deselect();
                     selectedSlot = -1; // Deselect the current slot
+                    OnSelectedItemChanged?.Invoke(null);
                 }
                 else
                 {
@@ -40,12 +43,18 @@ public class InventoryManager : MonoBehaviour
     void ChangeSelectedSlot(int newValue)
     {
         if (selectedSlot >= 0)
-        {
             inventorySlots[selectedSlot].Deselect();
-        }
 
         inventorySlots[newValue].Select();
         selectedSlot = newValue;
+
+        NotifySelectionChanged();
+    }
+
+    void NotifySelectionChanged()
+    {
+        ItemData selectedItem = GetSelectedItem();
+        OnSelectedItemChanged?.Invoke(selectedItem);
     }
 
     public bool AddItem(ItemData item)
