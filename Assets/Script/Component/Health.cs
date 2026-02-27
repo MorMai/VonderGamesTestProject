@@ -5,20 +5,34 @@ public interface IDamageable
     void TakeDamage(float amount);
 }
 
-public class Health : MonoBehaviour, IRequireStats, IDamageable
+public interface IKnockbackable
+{
+    void ApplyKnockback(Vector2 force);
+}
+
+public class Health : MonoBehaviour, IRequireStats, IDamageable, IKnockbackable
 {
     private float _currentHealth;
     private float _maxHealth;
 
     public UnityEvent<float,float> OnHealthChanged;
     public UnityEvent OnDeath;
+    private void Awake()
+    {
+        // Subscribe destroy logic to death event
+        OnDeath.AddListener(HandleDeath);
+    }
+    private void HandleDeath()
+    {
+        Destroy(gameObject);
+    }
+
     public void Initialize(EntityData stats)
     {
         _maxHealth = stats.health;
         _currentHealth = _maxHealth;
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }
-
     public void TakeDamage(float amount)
     {
         if(_currentHealth <= 0)
@@ -35,6 +49,15 @@ public class Health : MonoBehaviour, IRequireStats, IDamageable
         if (_currentHealth <= 0)
         {
             OnDeath?.Invoke();
+        }
+    }
+
+    public void ApplyKnockback(Vector2 force)
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.AddForce(force, ForceMode2D.Impulse);
         }
     }
 

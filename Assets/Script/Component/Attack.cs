@@ -17,32 +17,34 @@ public class Attack : MonoBehaviour, IRequireStats
         maxDamage = stats.maxDamage;
     }
 
-    public void ExecuteAttack(GameObject target)
+    public void ExecuteAttack(IDamageable target, Vector2 attackerPosition)
     {
         if (target == null)
             return;
 
         float attackDamage = Mathf.RoundToInt(Random.Range(minDamage, maxDamage));
 
-        if (target.TryGetComponent<IDamageable>(out var damageable))
-        {
-            damageable.TakeDamage(attackDamage);
-            Debug.Log($"Attacked {target.name} for {attackDamage} damage.");
-        }
+        target.TakeDamage(attackDamage);
 
-        ApplyKnockback(target);
+        ApplyKnockback(target, attackerPosition);
     }
 
-    private void ApplyKnockback(GameObject target)
+    private void ApplyKnockback(IDamageable target, Vector2 attackerPosition)
     {
-        Rigidbody2D rb = target.GetComponent<Rigidbody2D>();
-
-        if (rb == null)
+        if (target is not IKnockbackable knockbackable)
             return;
 
-        Vector2 direction = (target.transform.position - transform.position).normalized;
+        MonoBehaviour targetMono = target as MonoBehaviour;
+
+        if (targetMono == null)
+            return;
+
+        Vector2 direction = ((Vector2)targetMono.transform.position - attackerPosition).normalized;
+
         direction.y += knockbackVerticalBoost;
 
-        rb.AddForce(direction * knockbackForce, ForceMode2D.Impulse);
+        Vector2 force = direction * knockbackForce;
+
+        knockbackable.ApplyKnockback(force);
     }
 }

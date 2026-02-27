@@ -51,13 +51,13 @@ public abstract class EnemyAI : MonoBehaviour, IStateMachineHost
     //just for testing, remove this later
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Player"))
-        {
-            if(Attack != null)
-            {
-                Attack.ExecuteAttack(other.gameObject);
-            }
-        }
+        IDamageable damageable =
+        other.GetComponentInParent<IDamageable>();
+
+        if (damageable == null)
+            return;
+
+        Attack?.ExecuteAttack(damageable, transform.position);   // attacker position
     }
 
     public string GetCurrentStateName()

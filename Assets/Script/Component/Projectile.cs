@@ -38,10 +38,15 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == owner)
+        if (collision.transform.root.gameObject == owner)
             return;
 
-        attackComponent.ExecuteAttack(collision.gameObject);
-        Destroy(gameObject);
+        IDamageable damageable = collision.GetComponentInParent<IDamageable>();
+
+        if (damageable != null)
+        {
+            attackComponent.ExecuteAttack(damageable, transform.position);
+            Destroy(gameObject);
+        }
     }
 }
