@@ -14,6 +14,8 @@ public abstract class EnemyAI : MonoBehaviour, IStateMachineHost
     public Detector Detector;
     public Attack Attack;
     public StateManager<EnemyState, EnemyAI> StateMachine;
+    private Health _health;
+    private Transform _detectedTarget;
     public Transform Target { get; set; }
     public bool IsFoundPlayer { get; set; }
     public bool IsChasing { get; set; }
@@ -26,6 +28,8 @@ public abstract class EnemyAI : MonoBehaviour, IStateMachineHost
         GroundChecker = GetComponent<GroundChecker>();
         Detector = GetComponent<Detector>();
         Attack = GetComponent<Attack>();
+        _health = GetComponent<Health>();
+        if (_health != null) _health.OnDamaged.AddListener(HandleDamaged);
         if (Visuals == null) Visuals = transform.Find("Visuals");
         InitializeStateManager();
     }
@@ -36,10 +40,17 @@ public abstract class EnemyAI : MonoBehaviour, IStateMachineHost
     }
     protected virtual void Update()
     {
+        Debug.Log("Update Target = " + Target);
         if (Detector != null)
         {
             IsFoundPlayer = Detector.IsTargetDetected;
-            Target = Detector.CurrentTarget;
+            _detectedTarget = Detector.CurrentTarget;
+
+            // Only let detector control target if NOT already aggro
+            if (!IsChasing && IsFoundPlayer && _detectedTarget != null)
+            {
+                Target = _detectedTarget;
+            }
         }
 
 
@@ -75,5 +86,21 @@ public abstract class EnemyAI : MonoBehaviour, IStateMachineHost
             scale.x *= -1;
             Visuals.localScale = scale;
         }
+    }
+
+    private void HandleDamaged(Transform attacker)
+    {
+        Debug.Log("HandleDamaged called. Attacker = " + attacker);
+
+        if (attacker == null)
+            return;
+
+        Target = attacker;
+        Debug.Log("Target set to: " + Target);
+
+        IsFoundPlayer = true;
+        IsChasing = true;
+
+        StateMachine.TransitionToState(EnemyState.Chase);
     }
 }

@@ -41,7 +41,7 @@ public class RangedWeapon : EquippableItem
 
         if (bulletObj.TryGetComponent<Projectile>(out var projectile))
         {
-            projectile.Setup(shootDirection, rangedData.projectileSpeed, setup.stats, user);
+            projectile.Setup(shootDirection, rangedData.projectileSpeed, setup.stats, user.transform);
         }
 
         nextUseTime = Time.time + cooldown;

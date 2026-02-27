@@ -7,6 +7,7 @@ public class Attack : MonoBehaviour, IRequireStats
 
     private float minDamage;
     private float maxDamage;
+    private Transform owner;
 
     public void Initialize(EntityData stats)
     {
@@ -17,14 +18,19 @@ public class Attack : MonoBehaviour, IRequireStats
         maxDamage = stats.maxDamage;
     }
 
+    public void SetOwner(Transform ownerTransform)
+    {
+        owner = ownerTransform;
+    }
+
     public void ExecuteAttack(IDamageable target, Vector2 attackerPosition)
     {
         if (target == null)
             return;
 
         float attackDamage = Mathf.RoundToInt(Random.Range(minDamage, maxDamage));
-
-        target.TakeDamage(attackDamage);
+        Transform attackerTransform = transform; 
+        target.TakeDamage(attackDamage, attackerTransform);
 
         ApplyKnockback(target, attackerPosition);
     }

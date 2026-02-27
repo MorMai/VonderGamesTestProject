@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 public interface IDamageable
 {
-    void TakeDamage(float amount);
+    void TakeDamage(float amount, Transform attacker);
 }
 
 public interface IKnockbackable
@@ -16,6 +16,7 @@ public class Health : MonoBehaviour, IRequireStats, IDamageable, IKnockbackable
     private float _maxHealth;
 
     public UnityEvent<float,float> OnHealthChanged;
+    public UnityEvent<Transform> OnDamaged;
     public UnityEvent OnDeath;
     private void Awake()
     {
@@ -33,7 +34,7 @@ public class Health : MonoBehaviour, IRequireStats, IDamageable, IKnockbackable
         _currentHealth = _maxHealth;
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, Transform attacker)
     {
         if(_currentHealth <= 0)
         {
@@ -44,6 +45,7 @@ public class Health : MonoBehaviour, IRequireStats, IDamageable, IKnockbackable
         _currentHealth -= amount;
         _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth); //prevent health below 0
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+        OnDamaged?.Invoke(attacker);
 
         Debug.Log($"{gameObject.name} took {amount} damage. Current health: {_currentHealth}");
         if (_currentHealth <= 0)

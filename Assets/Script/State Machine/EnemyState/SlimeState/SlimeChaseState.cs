@@ -17,6 +17,7 @@ public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
 
     public override void UpdateState()
     {
+        Debug.Log("Chasing target: " + Context.Target);
         if (Context.Target == null)
         {
             _lostSightTimer += Time.deltaTime;
@@ -73,8 +74,11 @@ public class SlimeChaseState : BaseState<EnemyState, EnemyAI>
         if (Context.Target == null)
         {
             if (_lostSightTimer >= _forgetPlayerTime)
+            {
+                Context.IsChasing = false; // Stop chasing if player is lost for too long
+                Context.Target = null; // Clear target reference
                 return EnemyState.Idle;
-
+            }
             return StateKey;
         }
 

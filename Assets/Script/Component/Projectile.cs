@@ -6,7 +6,8 @@ public class Projectile : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Attack attackComponent;
-    private GameObject owner;
+    private Transform ownerTransform;
+    private EntityData ownerStats;
 
     private void Awake()
     {
@@ -14,19 +15,21 @@ public class Projectile : MonoBehaviour
         attackComponent = GetComponent<Attack>();
     }
 
-    public void Setup(Vector2 direction, float speed, EntityData shooterStats, GameObject shooter)
+    public void Setup(Vector2 direction, float speed, EntityData shooterStats, Transform shooter)
     {
-        owner = shooter;
+        ownerTransform = shooter;
+        ownerStats = shooterStats;
 
         rb.gravityScale = 0f;
         rb.velocity = direction.normalized * speed;
 
         // Inject shooter stats into Attack
-        attackComponent.Initialize(shooterStats);
+        attackComponent.Initialize(ownerStats);
+        attackComponent.SetOwner(shooter);
 
         // Ignore collision with shooter
         Collider2D myCol = GetComponent<Collider2D>();
-        Collider2D ownerCol = owner.GetComponent<Collider2D>();
+        Collider2D ownerCol = shooter.GetComponent<Collider2D>();
 
         if (myCol != null && ownerCol != null)
         {
@@ -38,15 +41,21 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.root.gameObject == owner)
+        if (collision.transform.root.gameObject == ownerTransform)
             return;
 
         IDamageable damageable = collision.GetComponentInParent<IDamageable>();
 
         if (damageable != null)
         {
-            attackComponent.ExecuteAttack(damageable, transform.position);
+            //pass to owner stats for damage calculation
+            damageable.TakeDamage(Random.Range(ownerStats.minDamage, ownerStats.maxDamage),ownerTransform);
             Destroy(gameObject);
+        }
+        else
+        {
+            // Optionally, destroy projectile on hitting non-damageable objects (like walls)
+            //Destroy(gameObject);
         }
     }
 }
