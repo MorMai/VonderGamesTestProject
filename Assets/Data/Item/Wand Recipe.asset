@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f297dd7811193498a1bd340ea5c099, type: 3}
-  m_Name: Wand 1
+  m_Script: {fileID: 11500000, guid: fff44cf85a985cb4ebc994e0ba7cd9da, type: 3}
+  m_Name: Wand Recipe
   m_EditorClassIdentifier: 
-  itemName: Basic Wand
-  itemIcon: {fileID: 21300000, guid: 7182c043245e33e47bcaf13f24e8228d, type: 3}
-  description: It's a basic wand for starter mage!
-  isStackable: 0
+  requiredItems: {fileID: 11400000, guid: ccb77d688629cac45bb93cce220dd6ad, type: 2}
+  result: {fileID: 11400000, guid: c2b5a2ec0fe1d374d941dba25535325a, type: 2}
+  resultAmount: 1
