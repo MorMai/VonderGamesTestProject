@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntitySetup : MonoBehaviour
 {
-    [SerializeField] private EntityData stats;
+    [SerializeField] public EntityData stats;
 
     private void Awake()
     {

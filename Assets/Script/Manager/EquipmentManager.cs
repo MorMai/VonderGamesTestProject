@@ -34,7 +34,7 @@ public class EquipmentManager : MonoBehaviour
     {
         if (currentEquippedItem != null && currentEquippedItem.CanUse())
         {
-            currentEquippedItem.Use(this.gameObject, this.transform);
+            currentEquippedItem.Use(this.gameObject, handTransform);
         }
     }
 }
