@@ -9,4 +9,5 @@ public class RangedWeaponData : ItemData
     public GameObject projectilePrefab; // The bullet we will shoot
     public float fireRate = 0.5f;       // Time between shots
     public float projectileSpeed = 15f;
+    public float arcaneCost = 10f;      // Arcane cost per shot
 }

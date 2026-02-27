@@ -24,6 +24,12 @@ public class RangedWeapon : EquippableItem
         if (!user.TryGetComponent<EntitySetup>(out var setup))
             return;
 
+        if (!user.TryGetComponent<Arcane>(out var arcane))
+            return;
+
+        if (!arcane.TrySpendArcane(rangedData.arcaneCost))
+            return;
+
         float faceDirection = Mathf.Sign(aimTransform.lossyScale.x); // include parent scale direction
         Vector2 shootDirection = new Vector2(faceDirection, 0);
 
