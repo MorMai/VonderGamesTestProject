@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd597aa97479dae4b85405bc1f6880a2, type: 3}
-  m_Name: New Ranged Weapon
+  m_Name: Basic Wand
   m_EditorClassIdentifier: 
   itemName: Basic Wand
-  itemIcon: {fileID: 21300000, guid: e0789547116bf43459ba723c72758281, type: 3}
+  itemIcon: {fileID: 21300000, guid: 7182c043245e33e47bcaf13f24e8228d, type: 3}
   description: It's a basic wand for starter mage!
   isStackable: 0
   isEquippable: 1
@@ -21,3 +21,4 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1987740563066914297, guid: f2aa6cf93fba3ef49b8386675defa9be, type: 3}
   fireRate: 0.5
   projectileSpeed: 15
+  arcaneCost: 10

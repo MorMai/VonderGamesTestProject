@@ -127,4 +127,46 @@ public class InventoryManager : MonoBehaviour
         InventoryItem inventoryItem = newItemGo.GetComponent<InventoryItem>();
         inventoryItem.InitialiseItem(item);
     }
+
+    public bool HasItemAmount(ItemData item, int amount) // Check if the inventory has at least a certain amount of a specific item
+    {
+        int total = 0;
+
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+            if (itemInSlot != null && itemInSlot.item == item)
+            {
+                total += itemInSlot.count;
+            }
+        }
+
+        return total >= amount;
+    }
+
+    public void RemoveItemAmount(ItemData item, int amount) // Remove a specific amount of an item from the inventory
+    {
+        int remaining = amount;
+
+        foreach (InventorySlot slot in inventorySlots)
+        {
+            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+
+            if (itemInSlot != null && itemInSlot.item == item)
+            {
+                int remove = Mathf.Min(itemInSlot.count, remaining);
+
+                itemInSlot.count -= remove;
+                remaining -= remove;
+
+                if (itemInSlot.count <= 0)
+                    Destroy(itemInSlot.gameObject);
+                else
+                    itemInSlot.RefreshCount();
+
+                if (remaining <= 0)
+                    return;
+            }
+        }
+    }
 }
