@@ -882,6 +882,7 @@ GameObject:
   - component: {fileID: 248734080}
   - component: {fileID: 248734079}
   - component: {fileID: 248734081}
+  - component: {fileID: 248734082}
   m_Layer: 0
   m_Name: TimeManager
   m_TagString: Untagged
@@ -931,6 +932,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 1194361080}
+  timeSystem: {fileID: 248734079}
+--- !u!114 &248734082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 248734078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f185a9e3a6847ed418eeb92f52789100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Arcane: {fileID: 1194361084}
   timeSystem: {fileID: 248734079}
 --- !u!1001 &271121755
 PrefabInstance:
