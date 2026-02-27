@@ -22,7 +22,7 @@ public class Attack : MonoBehaviour, IRequireStats
         if (target == null)
             return;
 
-        float attackDamage = Random.Range(minDamage, maxDamage);
+        float attackDamage = Mathf.RoundToInt(Random.Range(minDamage, maxDamage));
 
         if (target.TryGetComponent<IDamageable>(out var damageable))
         {
