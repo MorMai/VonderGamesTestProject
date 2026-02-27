@@ -15,6 +15,7 @@ public class SlimePatrolState : BaseState<EnemyState, EnemyAI>
         _patrolTime = Random.Range(3f, 6f); 
         // Random move dir
         _moveDir = Random.value > 0.5f ? Vector2.right : Vector2.left;
+        Context.UpdateFacing(_moveDir.x);
     }
 
     public override void UpdateState()
