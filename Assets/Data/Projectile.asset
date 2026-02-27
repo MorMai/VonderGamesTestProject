@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df33c5aaa252cdd46809d84fedf309d6, type: 3}
   m_Name: Projectile
   m_EditorClassIdentifier: 
-  EntityName: 
+  EntityName: Projectile
   health: 0
-  minDamage: 0
-  maxDamage: 0
+  minDamage: 5
+  maxDamage: 10
   jumpHeight: 0
   moveSpeed: 0
   attackSpeed: 0
