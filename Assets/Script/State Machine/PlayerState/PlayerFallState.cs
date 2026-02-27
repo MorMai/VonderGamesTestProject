@@ -14,6 +14,7 @@ public class PlayerFallState : BaseState<PlayerState, PlayerController>
     {
         // Fall State logic
         Context.Mover.Move(Context.MoveInput * Context.CurrentSpeedMultiplier); // Allow air control
+        Context.HandleFlip();
     }
 
     public override void ExitState()

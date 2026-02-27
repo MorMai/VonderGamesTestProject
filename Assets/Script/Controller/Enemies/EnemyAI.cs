@@ -47,8 +47,6 @@ public abstract class EnemyAI : MonoBehaviour, IStateMachineHost
     }
 
     protected abstract void InitializeStateManager();
-
-    //just for testing, remove this later
     private void OnTriggerEnter2D(Collider2D other)
     {
         IDamageable damageable =

@@ -20,6 +20,7 @@ public class PlayerJumpState : BaseState<PlayerState, PlayerController>
     {
         // Allow air control
         Context.Mover.Move(Context.MoveInput * Context.CurrentSpeedMultiplier);
+        Context.HandleFlip();
     }
 
     public override void ExitState()
