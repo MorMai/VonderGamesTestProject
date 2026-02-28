@@ -24,7 +24,7 @@ Although most of the game architecture uses MVP or MVVP approches but for modula
 The systems communicate through UnityEvents to reduce tight coupling.
 ![Architecture Diagram](./Docs/Architecture)
 
-Note: if the image above wasn't showing you can access it on this Canva link: https://www.canva.com/design/DAHCRabL4Dg/MOSRPLu2z11SmoEz94AMkg/view?utm_content=DAHCRabL4Dg&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb23f850d19
+Note: if the image above wasn't showing you can access it on this Canva link: [[Canva Link](https://www.canva.com/design/DAHCRabL4Dg/MOSRPLu2z11SmoEz94AMkg/view?utm_content=DAHCRabL4Dg&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hb23f850d19)]
 
 ## Design Decisions & Assumptions
 
@@ -79,6 +79,11 @@ Day 6:
 - Finalize project (3 hour)
 - Test and build game (30 mins)
 - Documentation & demo video (1 hours)
+
+## Demo
+
+Video walkthrough:
+[[YouTube Link](https://youtu.be/_Iy4mkFPnZM)]
 
   
 
