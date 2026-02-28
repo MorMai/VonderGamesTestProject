@@ -8,6 +8,7 @@ public class TimeHopTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             timeSystem.AdvanceTime();
+            Destroy(gameObject);
         }
     }
 }

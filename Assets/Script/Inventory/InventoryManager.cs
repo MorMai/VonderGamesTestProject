@@ -79,6 +79,10 @@ public class InventoryManager : MonoBehaviour
             if (itemInSlot == null)
             {
                 SpawnNewItem(item, slot);
+                if (i == selectedSlot)
+                {
+                    NotifySelectionChanged();
+                }
                 return true; // Exit after adding the item
             }
         }
