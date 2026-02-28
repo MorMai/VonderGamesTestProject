@@ -22,5 +22,8 @@ Although most of the game architecture uses MVP or MVVP approches but for modula
 - View Layer (UI & Presentation)
 
 The systems communicate through UnityEvents to reduce tight coupling.
+![Architecture Diagram](./Docs/This_Game_Achitecture.png)
+
+
 
 
