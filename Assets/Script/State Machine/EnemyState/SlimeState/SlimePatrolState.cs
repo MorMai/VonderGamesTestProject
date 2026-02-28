@@ -3,7 +3,7 @@ using UnityEngine;
 public class SlimePatrolState : BaseState<EnemyState, EnemyAI>
 {
     private Vector2 _moveDir = Vector2.right;
-    private float _wallCheckDist = 0.6f;
+    private float _wallCheckDist = 0.2f;
     private float _ledgeCheckDist = 1.0f;
     private float _ledgeForwardOffset = 0.5f;
     private float _patrolTime;
@@ -21,17 +21,19 @@ public class SlimePatrolState : BaseState<EnemyState, EnemyAI>
     public override void UpdateState()
     {
         LayerMask mask = Context.GroundChecker.GroundLayer;
-        Vector2 pos = Context.transform.position;
+        Bounds bounds = Context.BodyCollider.bounds;
 
         // Check for Wall
-        RaycastHit2D wallHit = Physics2D.Raycast(pos, _moveDir, _wallCheckDist, mask);
+        Vector2 wallOrigin = new Vector2(bounds.center.x + (_moveDir.x * bounds.extents.x),bounds.center.y);
+        RaycastHit2D wallHit = Physics2D.Raycast(wallOrigin, _moveDir, _wallCheckDist, mask);
 
         // Check for Ledge 
-        Vector2 ledgeStart = pos + (Vector2.right * _moveDir.x * _ledgeForwardOffset);
+        Vector2 ledgeOrigin = new Vector2(bounds.center.x + (_moveDir.x * bounds.extents.x),bounds.min.y);
+        Vector2 ledgeStart = ledgeOrigin + (Vector2.right * _moveDir.x * _ledgeForwardOffset);
         RaycastHit2D ledgeHit = Physics2D.Raycast(ledgeStart, Vector2.down, _ledgeCheckDist, mask);
 
-        Debug.DrawRay(pos, _moveDir * _wallCheckDist, Color.red);
-        Debug.DrawRay(ledgeStart, Vector2.down * _ledgeCheckDist, Color.blue);
+        Debug.DrawRay(wallOrigin, _moveDir * _wallCheckDist, Color.red);
+        Debug.DrawRay(ledgeOrigin, Vector2.down * _ledgeCheckDist, Color.blue);
 
         if (wallHit.collider != null || ledgeHit.collider == null) // If there's a wall ahead or no ground ahead flip direction
         {

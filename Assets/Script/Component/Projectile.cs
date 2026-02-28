@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Attack))]
@@ -8,6 +9,9 @@ public class Projectile : MonoBehaviour
     private Attack attackComponent;
     private Transform ownerTransform;
     private EntityData ownerStats;
+    [SerializeField] private UnityEvent OnCreate;
+    [SerializeField] private UnityEvent OnDamage;
+
 
     private void Awake()
     {

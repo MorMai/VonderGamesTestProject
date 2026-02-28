@@ -16,6 +16,7 @@ public abstract class EnemyAI : MonoBehaviour, IStateMachineHost
     public StateManager<EnemyState, EnemyAI> StateMachine;
     private Health _health;
     private Transform _detectedTarget;
+    public Collider2D BodyCollider { get; private set; }
     public Transform Target { get; set; }
     public bool IsFoundPlayer { get; set; }
     public bool IsChasing { get; set; }
@@ -29,6 +30,7 @@ public abstract class EnemyAI : MonoBehaviour, IStateMachineHost
         Detector = GetComponent<Detector>();
         Attack = GetComponent<Attack>();
         _health = GetComponent<Health>();
+        BodyCollider = GetComponent<Collider2D>();
         if (_health != null) _health.OnDamaged.AddListener(HandleDamaged);
         if (Visuals == null) Visuals = transform.Find("Visuals");
         InitializeStateManager();

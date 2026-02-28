@@ -52,7 +52,9 @@ public class PlayerController : MonoBehaviour, IStateMachineHost
     {
         if (Mathf.Abs(MoveInput.x) > 0.1f)
         {
-            Visuals.transform.localScale = new Vector3(Mathf.Sign(MoveInput.x), 1, 1);
+            Vector3 scale = Visuals.localScale;
+            scale.x = Mathf.Abs(scale.x) * Mathf.Sign(MoveInput.x);
+            Visuals.localScale = scale;
         }
     }
 }
