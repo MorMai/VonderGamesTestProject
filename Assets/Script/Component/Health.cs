@@ -68,4 +68,16 @@ public class Health : MonoBehaviour, IRequireStats, IDamageable, IKnockbackable
         _currentHealth = _maxHealth;
         OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
     }
+
+    public void Heal(float amount)
+    {
+        // Don't heal if already at max
+        if (_currentHealth >= _maxHealth) return;
+
+        _currentHealth += amount;
+        _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+        OnHealthChanged?.Invoke(_currentHealth, _maxHealth);
+
+        Debug.Log($"{gameObject.name} healed for {amount}. Current health: {_currentHealth}");
+    }
 }

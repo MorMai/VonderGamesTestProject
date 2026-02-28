@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63850f165cb3eea41834eac7b1f1507e, type: 3}
+  m_Name: Slime Drop
+  m_EditorClassIdentifier: 
+  ingredients:
+  - item: {fileID: 11400000, guid: 393c50e893be71d48897e64c462d6286, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 040200dda1fedda44a830e4f3af1dc66, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: 79b27de1fd7d5eb4ab017afd8d15fcc4, type: 2}
+    amount: 1

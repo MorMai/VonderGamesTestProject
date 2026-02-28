@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd597aa97479dae4b85405bc1f6880a2, type: 3}
-  m_Name: Basic Wand
+  m_Name: Advance Wand
   m_EditorClassIdentifier: 
-  itemName: Basic Wand
-  itemIcon: {fileID: -1683510826, guid: dc8e0619f9d85314f9ed6b4100057900, type: 3}
-  description: It's a basic wand for starter mage!
+  itemName: Advance Wand
+  itemIcon: {fileID: 7835884, guid: dc8e0619f9d85314f9ed6b4100057900, type: 3}
+  description: 
   isStackable: 0
   isEquippable: 1
-  itemPrefab: {fileID: 5498506399128775985, guid: a219c1986d32653488fbbf594d806140, type: 3}
+  itemPrefab: {fileID: 7565178204021761275, guid: b66d0854a84c86042b45a53b0f7f422f, type: 3}
   projectilePrefab: {fileID: 1987740563066914297, guid: f2aa6cf93fba3ef49b8386675defa9be, type: 3}
-  fireRate: 0.5
-  projectileSpeed: 15
-  arcaneCost: 5
+  fireRate: 0.25
+  projectileSpeed: 25
+  arcaneCost: 10

@@ -693,6 +693,7 @@ GameObject:
   - component: {fileID: 6813247736445788658}
   - component: {fileID: 3492924085085473791}
   - component: {fileID: 4933554482653655716}
+  - component: {fileID: 5054874315662648994}
   m_Layer: 6
   m_Name: Smaller Slime
   m_TagString: Untagged
@@ -871,8 +872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce3ad1f5afc2ee48bb3020fbc3e1179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boxSize: {x: 0.94, y: 0.14}
-  _castDistance: 0.38
+  _boxSize: {x: 1.11, y: 0.1}
+  _castDistance: 0.53
   _groundLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -936,7 +937,32 @@ MonoBehaviour:
       m_Calls: []
   OnDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5054874315662648994}
+        m_TargetAssemblyTypeName: LootDropper, Assembly-CSharp
+        m_MethodName: DropLoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5054874315662648994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8101533352701181339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218b4da505b1ff144b1db43d66938288, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootPool: {fileID: 11400000, guid: 7777eca6d965fa34682e00f2b6a43b98, type: 2}
 --- !u!1 &8261596459556190208
 GameObject:
   m_ObjectHideFlags: 0

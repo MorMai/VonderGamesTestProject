@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CraftingUI : MonoBehaviour
 {
-    public CraftingManager craftingManager;
+    public CraftingManager craftingManager; 
     public List<CraftingRecipe> availableRecipes;
 
     public Transform recipeListParent;
@@ -17,6 +17,11 @@ public class CraftingUI : MonoBehaviour
 
     private void Start()
     {
+        PopulateRecipeList();
+    }
+    public void Initialize(List<CraftingRecipe> recipes)
+    {
+        availableRecipes = recipes;
         PopulateRecipeList();
     }
 

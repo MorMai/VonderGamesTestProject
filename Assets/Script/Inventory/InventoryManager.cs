@@ -9,10 +9,24 @@ public class InventoryManager : MonoBehaviour
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
+    public static InventoryManager Instance { get; private set; }
+
     public System.Action<ItemData> OnSelectedItemChanged;
 
     int selectedSlot = -1;
 
+    private void Awake()
+    {
+        // Simple Singleton setup
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
     private void Start()
     {
         ChangeSelectedSlot(0);

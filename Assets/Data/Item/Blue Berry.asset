@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77f297dd7811193498a1bd340ea5c099, type: 3}
-  m_Name: Magic Stone
+  m_Name: Blue Berry
   m_EditorClassIdentifier: 
-  itemName: Magic Stone
-  itemIcon: {fileID: -1136778198, guid: dc8e0619f9d85314f9ed6b4100057900, type: 3}
+  itemName: Blue Berry
+  itemIcon: {fileID: -490862087, guid: dc8e0619f9d85314f9ed6b4100057900, type: 3}
   description: 
   isStackable: 1
   isEquippable: 0

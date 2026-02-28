@@ -7,6 +7,11 @@ public class SpawnItemDemo : MonoBehaviour
     public InventoryManager inventoryManager;
     public ItemData[] itemsToPickup;
 
+    public void Start()
+    {
+        PickupItem(0); 
+    }
+
     public void PickupItem(int index)
     {
         bool result = inventoryManager.AddItem(itemsToPickup[index]);

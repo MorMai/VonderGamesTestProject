@@ -59,7 +59,7 @@ public class Projectile : MonoBehaviour
         else
         {
             // Optionally, destroy projectile on hitting non-damageable objects (like walls)
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 }

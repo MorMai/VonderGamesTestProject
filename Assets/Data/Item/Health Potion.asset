@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5db4fa917273ff8459ccb048664c33ee, type: 3}
+  m_Name: Health Potion
+  m_EditorClassIdentifier: 
+  itemName: Health Potion
+  itemIcon: {fileID: -379100400, guid: dc8e0619f9d85314f9ed6b4100057900, type: 3}
+  description: 
+  isStackable: 1
+  isEquippable: 1
+  itemPrefab: {fileID: 7192392248613655768, guid: d66df1d1336087d42a1d01e3fe4ebf88, type: 3}
+  healthRestoreAmount: 20
+  arcaneRestoreAmount: 0
+  consumeDelay: 1

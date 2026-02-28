@@ -9,12 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f297dd7811193498a1bd340ea5c099, type: 3}
-  m_Name: Magic Stone
+  m_Script: {fileID: 11500000, guid: 63850f165cb3eea41834eac7b1f1507e, type: 3}
+  m_Name: Health Potion Ingredient
   m_EditorClassIdentifier: 
-  itemName: Magic Stone
-  itemIcon: {fileID: -1136778198, guid: dc8e0619f9d85314f9ed6b4100057900, type: 3}
-  description: 
-  isStackable: 1
-  isEquippable: 0
-  itemPrefab: {fileID: 0}
+  ingredients:
+  - item: {fileID: 11400000, guid: 3a785e829c916854baa4a6cb79ae1239, type: 2}
+    amount: 5

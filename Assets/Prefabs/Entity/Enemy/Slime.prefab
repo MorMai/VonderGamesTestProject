@@ -708,7 +708,7 @@ GameObject:
   - component: {fileID: 2042133779396009272}
   - component: {fileID: 8897296526612659436}
   - component: {fileID: 3930809842441715981}
-  - component: {fileID: 394041530095047153}
+  - component: {fileID: 4765944453547969307}
   m_Layer: 6
   m_Name: Slime
   m_TagString: Untagged
@@ -965,6 +965,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4765944453547969307}
+        m_TargetAssemblyTypeName: LootDropper, Assembly-CSharp
+        m_MethodName: DropLoot
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3930809842441715981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -981,7 +993,7 @@ MonoBehaviour:
   splitCount: 2
   spawnOffset: 0.5
   spawnForce: 3
---- !u!114 &394041530095047153
+--- !u!114 &4765944453547969307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -990,10 +1002,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4270802028295146960}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7385194d5ea345b4f87b756c272ac291, type: 3}
+  m_Script: {fileID: 11500000, guid: 218b4da505b1ff144b1db43d66938288, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageParticlePrefab: {fileID: 8642927501470472790, guid: 1ce49eaab9c48294cb2a2e0d8a311fc3, type: 3}
+  lootPool: {fileID: 11400000, guid: 6b7931650453ed244a2148b18e0d1a66, type: 2}
 --- !u!1 &5191204643034345124
 GameObject:
   m_ObjectHideFlags: 0
